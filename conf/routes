@@ -1,0 +1,65 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# An example controller showing a sample home page
+GET     /                           controllers.HomeController.index
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
+
+OPTIONS    /*path 				    com.thefreshlystore.controllers.BaseController.preflight(path:String)
+
+########################################### User Controller ###########################################
+POST	/write/v1/user/loginOrCreateUser	com.thefreshlystore.controllers.UserController.loginOrCreateUser()
+POST	/write/v1/user/captureUserDetails	com.thefreshlystore.controllers.UserController.captureUserDetails()
+DELETE	/write/v1/user/logout				com.thefreshlystore.controllers.UserController.logout(token : String ?= null)
+POST	/write/v1/user/addAddress			com.thefreshlystore.controllers.UserController.addAddress()
+GET		/read/v1/user/getMyAddresses		com.thefreshlystore.controllers.UserController.getMyAddresses()
+POST	/write/v1/user/deleteUserAddress 	com.thefreshlystore.controllers.UserController.deleteUserAddress()
+POST	/write/v1/user/editUserDetails		com.thefreshlystore.controllers.UserController.editUserDetails()
+POST	/write/v1/user/editUserAddress		com.thefreshlystore.controllers.UserController.editUserAddress()
+GET		/dummy								com.thefreshlystore.controllers.UserController.dummy()
+
+########################################### Items Controller ###########################################
+POST	/write/v1/items/create				com.thefreshlystore.controllers.ItemsController.createItem()
+GET		/read/v1/items/getAll				com.thefreshlystore.controllers.ItemsController.getAllItems(isAll : Boolean ?= true)
+POST	/write/v1/items/edit				com.thefreshlystore.controllers.ItemsController.editItem()
+
+########################################### Cart Controller ###########################################
+POST	/write/v1/cart/addOrUpdate			com.thefreshlystore.controllers.CartController.addToOrUpdateCart()
+GET		/read/v1/cart/getMyCart				com.thefreshlystore.controllers.CartController.getMyCart()
+
+########################################### Orders Controller ###########################################
+POST	/write/v1/order/placeOrder			com.thefreshlystore.controllers.OrdersController.placeOrder()
+GET		/read/v1/order/getMyOrders			com.thefreshlystore.controllers.OrdersController.getMyOrders(count : Integer ?= null, offset : Integer ?= null)
+POST	/write/v1/order/changeOrderStatus	com.thefreshlystore.controllers.OrdersController.changeOrderStatus()
+GET		/read/v1/order/emailInvoice			com.thefreshlystore.controllers.OrdersController.emailInvoice(orderId : String ?= null)
+
+########################################### Generic Controller ###########################################
+GET		/read/v1/generic/getHomePageDetails	com.thefreshlystore.controllers.GenericController.getHomePageDetails()
+POST	/write/v1/generic/changePassword	com.thefreshlystore.controllers.GenericController.changePassword()
+
+########################################### Administrator Controller ###########################################
+POST	/write/v1/admin/login				com.thefreshlystore.controllers.AdministratorController.administratorLogin()
+GET		/read/v1/admin/getTodaysReport		com.thefreshlystore.controllers.AdministratorController.getTodaysReport()
+POST	/write/v1/admin/addDeliveryAssociate	com.thefreshlystore.controllers.AdministratorController.addDeliveryAssociate()
+POST	/write/v1/admin/updateOrderStatus	com.thefreshlystore.controllers.AdministratorController.updateOrderStatus()
+
+########################################### ServiceableAreas Controller ###########################################
+POST	/write/v1/serviceableAreas/create	com.thefreshlystore.controllers.ServiceableAreasController.createArea()
+
+########################################### Image Upload Controller ###########################################
+POST	/write/v1/imageupload/upload		com.thefreshlystore.controllers.ImageUploadController.uploadImage()
+
+########################################### Promocodes Controller ###########################################
+POST	/write/v1/promocode/create			com.thefreshlystore.controllers.PromocodesController.createPromocode()
+GET		/read/v1/promocode/check			com.thefreshlystore.controllers.PromocodesController.checkPromocode(promocode : String ?= null)
+
+########################################### Order Reviews Controller ###########################################
+POST	/write/v1/orderReviews/add			com.thefreshlystore.controllers.OrderReviewsController.createReview()
+
+########################################### Delivery Associate Controller ###########################################
+POST	/write/v1/deliveryAssociate/login	com.thefreshlystore.controllers.DeliveryAssociateController.login()
+GET		/read/v1/deliveryAssociate/getOrdersToDeliver	com.thefreshlystore.controllers.DeliveryAssociateController.getOrdersToDeliver()
+POST	/write/v1/deliveryAssociate/updateOrderStatus	com.thefreshlystore.controllers.DeliveryAssociateController.updateOrderStatus()
